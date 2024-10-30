@@ -24,8 +24,8 @@ export default function DiscountBadge({
       <Image
         src="/Star.svg"
         alt=""
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: 'cover' }}
         className="w-full h-full"
       />
       <div

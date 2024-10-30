@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 
 interface TimerProps {
   initialMinutes: number;
-  onTimeout: () => void;
 }
 
-export default function Timer({ initialMinutes, onTimeout }: TimerProps) {
+export default function Timer({ initialMinutes }: TimerProps) {
   const [seconds, setSeconds] = useState(initialMinutes * 60);
   const [isWarning, setIsWarning] = useState(false);
 
@@ -16,7 +15,6 @@ export default function Timer({ initialMinutes, onTimeout }: TimerProps) {
         if (prev <= 31) setIsWarning(true);
         if (prev < 1) {
           clearInterval(timer);
-          onTimeout();
           return 0;
         }
         return prev - 1;
@@ -24,7 +22,7 @@ export default function Timer({ initialMinutes, onTimeout }: TimerProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [onTimeout]);
+  }, []);
 
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;

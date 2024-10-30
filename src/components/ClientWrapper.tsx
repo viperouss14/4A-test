@@ -5,21 +5,18 @@ import PricingCards from "./Cards";
 
 interface ClientWrapperProps {
   subscriptions: SubscriptionData[];
-  onPlanSelect?: (plan: SubscriptionData) => void;
 }
 
-export default function ClientWrapper({ subscriptions, onPlanSelect }: ClientWrapperProps) {
+export default function ClientWrapper({ subscriptions }: ClientWrapperProps) {
   const [selectedPlan, setSelectedPlan] = useState<SubscriptionData | null>(null);
   const [isChecked, setIsChecked] = useState(true);
 
   const handleSelectPlan = (plan: SubscriptionData) => {
     setSelectedPlan(plan);
-    onPlanSelect?.(plan);
-    console.log("Selected plan:", selectedPlan);
   };
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    setIsChecked(prevIsChecked => !prevIsChecked);
   };
 
   return (
@@ -32,13 +29,13 @@ export default function ClientWrapper({ subscriptions, onPlanSelect }: ClientWra
       <p className="mt-3 text-left text-lg">
         Следуя плану на 3 месяца, люди получают в 2 раза лучший результат, чем за 1 месяц
       </p>
-      <div className="flex items-center gap-2 mt-6">
+      <form className="flex items-center gap-2 mt-6">
         <input
           type="checkbox"
           id="terms"
           checked={isChecked}
           onChange={handleCheckboxChange}
-          className="h-6 w-6"
+          className="h-6 w-6 cursor-pointer"
         />
         <label htmlFor="terms" className="text-[16px] text-[#818798]">
           Я соглашаюсь с{" "}
@@ -46,7 +43,7 @@ export default function ClientWrapper({ subscriptions, onPlanSelect }: ClientWra
           и условиями <br />
           <a href="" className="text-[#2D97F9]">Публичной оферты</a>.
         </label>
-      </div>
+      </form>
       <div className="flex mt-12">
         <button
           className="bg-[#FD4D35] text-white px-[100px] py-[28px] rounded-[50px] font-rubik text-xl animate-pulse"

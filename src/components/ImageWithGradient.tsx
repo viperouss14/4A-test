@@ -6,8 +6,8 @@ export default function ImageWithGradient() {
       <Image
         src="/man.svg"
         alt="Мужчина спортивного телосложения в шортах"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: 'cover' }}
         className="w-full h-full"
       />
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#F5F7F7] to-transparent"></div>
