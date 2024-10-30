@@ -13,6 +13,7 @@ export default function ClientWrapper({ subscriptions }: ClientWrapperProps) {
 
   const handleSelectPlan = (plan: SubscriptionData) => {
     setSelectedPlan(plan);
+    console.log(selectedPlan);
   };
 
   const handleCheckboxChange = () => {
