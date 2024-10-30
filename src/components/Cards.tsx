@@ -37,7 +37,7 @@ export default function PricingCards({
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [showDiscount]);
 
   const getPricingData = () => {
     const standardPrices = subscriptions.filter(
