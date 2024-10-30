@@ -1,4 +1,4 @@
-[
+const mockdata = [
   {
       "name": "1 неделя",
       "price": 699,

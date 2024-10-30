@@ -15,7 +15,7 @@ export default function ClientWrapper({ subscriptions, onPlanSelect }: ClientWra
   const handleSelectPlan = (plan: SubscriptionData) => {
     setSelectedPlan(plan);
     onPlanSelect?.(plan);
-    console.log("Selected plan:", plan);
+    console.log("Selected plan:", selectedPlan);
   };
 
   const handleCheckboxChange = () => {
