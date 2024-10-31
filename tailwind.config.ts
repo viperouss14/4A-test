@@ -25,7 +25,7 @@ const config: Config = {
         '18': '18deg', '-18': '-18deg' 
       },
       screens: {
-        'md': '767px'
+        'md': '769px'
       },
     },
   },
