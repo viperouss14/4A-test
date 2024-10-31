@@ -47,31 +47,33 @@ export default function Timer({ initialMinutes }: TimerProps) {
         </div>
 
         <div
-          className={`mx-3 flex h-[61px] items-start pt-[17px] ${
-            isWarning ? "animate-pulse" : ""
-          }`}
-        >
-          <svg
-            width="8"
-            height="27"
-            viewBox="0 0 8 27"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="4"
-              cy="4"
-              r="4"
-              style={{ fill: `var(--${isWarning ? 'alert-color' : 'accent-color'})` }}
-            />
-            <circle
-              cx="4"
-              cy="23"
-              r="4"
-              style={{ fill: `var(--${isWarning ? 'alert-color' : 'accent-color'})` }}
-            />
-          </svg>
-        </div>
+  className={`mx-3 flex h-[61px] items-start md:pt-[17px] pt-[8px] ${
+    isWarning ? "animate-pulse" : ""
+  }`}
+>
+  <svg
+    width="8"
+    height="27"
+    viewBox="0 0 8 27"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="4"
+      cy="4"
+      r="4"
+      className="r-[4] md:r-[5]"
+      style={{ fill: `var(--${isWarning ? 'alert-color' : 'accent-color'})` }}
+    />
+    <circle
+      cx="4"
+      cy="23"
+      r="4"
+      className="r-[4] md:r-[5]"
+      style={{ fill: `var(--${isWarning ? 'alert-color' : 'accent-color'})` }}
+    />
+  </svg>
+</div>
 
         <div className="flex flex-col items-center">
           <span className={timerClasses}>
