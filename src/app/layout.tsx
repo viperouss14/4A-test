@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     siteName: 'FitnessClub',
     images: [
       {
-        url: '/meta.png',
-        width: 1200,
-        height: 630,
+        url: 'https://4-a-test.vercel.app/meta.png',
+        width: 1400,
+        height: 880,
         alt: 'FitnessClub',
         type: 'image/png',
       },
