@@ -36,7 +36,7 @@ const Modal = ({ subscriptions }: ModalProps) => {
     setMounted(true);
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 12);
+    }, 123000);
 
     return () => clearTimeout(timer);
   }, []);
