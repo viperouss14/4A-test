@@ -24,6 +24,9 @@ const config: Config = {
       rotate: { 
         '18': '18deg', '-18': '-18deg' 
       },
+      screens: {
+        'md': '767px'
+      },
     },
   },
   plugins: [],
