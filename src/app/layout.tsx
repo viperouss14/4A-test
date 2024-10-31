@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,9 +39,25 @@ const bebasNeueCyr = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "FitnessClub",
-  description: "Страница выбора тарифов фитнес клуба с хорошими скидками",
-};
+  title: 'FitnessClub',
+  description: 'Страница выбора тарифов фитнес клуба с хорошими скидками',
+  openGraph: {
+    title: 'FitnessClub',
+    description: 'Страница выбора тарифов фитнес клуба с хорошими скидками',
+    url: 'https://4-a-test.vercel.app/',
+    siteName: 'FitnessClub',
+    images: [
+      {
+        url: '/meta.png',
+        width: 1200,
+        height: 630,
+        alt: 'FitnessClub',
+        type: 'image/png',
+      },
+    ],
+    type: 'website',
+  },
+}
 
 export default function RootLayout({
   children,
@@ -51,17 +66,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        {" "}
-        <title>{metadata.title?.toString()}</title>{" "}
-        <meta name="description" content={metadata.description?.toString()} />{" "}
-        <meta property="og:title" content={metadata.title?.toString()} />{" "}
-        <meta property="og:type" content="website" />{" "}
-        <meta property="og:url" content="https://4-a-test.vercel.app/" />{" "}
-        <meta property="og:image" content="" />{" "}
-        <meta property="og:description" content={metadata.description?.toString()} />{" "}
-        <meta property="og:site_name" content="FitnessClub" />{" "}
-      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} 
           ${rubik.variable} ${bebasNeue.variable} 

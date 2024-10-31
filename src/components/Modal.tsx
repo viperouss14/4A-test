@@ -36,7 +36,7 @@ const Modal = ({ subscriptions }: ModalProps) => {
     setMounted(true);
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 123000);
+    }, 12);
 
     return () => clearTimeout(timer);
   }, []);
@@ -96,9 +96,9 @@ const Modal = ({ subscriptions }: ModalProps) => {
         aria-hidden="true"
       />
 
-      <div className="fixed inset-0 flex items-center justify-center p-4">
+      <div className="fixed inset-x-0 top-[60px] bottom-[60px] md:inset-0 flex items-center justify-center p-4">
         <div
-          className="relative bg-[#F5F7F7] md:max-w-[750px] md:min-h-[658px] w-full min-w-[335px] max-h-screen overflow-y-auto md:overflow-y-visible"
+          className="relative bg-[#F5F7F7] mx-5 md:mx-0 md:max-w-[750px] md:min-h-[658px] w-[calc(100%-40px)] min-w-[335px] max-h-screen overflow-y-auto md:overflow-y-visible"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -122,7 +122,9 @@ const Modal = ({ subscriptions }: ModalProps) => {
                 className="text-2xl md:text-3xl font-bold text-center font-rubik my-5 md:my-8"
               >
                 НЕ УПУСТИ СВОЙ{" "}
-                <span className="text-accent">ПОСЛЕДНИЙ ШАНС</span>
+                <span className="block md:inline text-accent">
+                  ПОСЛЕДНИЙ ШАНС
+                </span>
               </h2>
               <p className="text[15px] md:text-2xl font-pt-root-ui-reg mb-2">
                 Мы знаем, как трудно начать..{" "}
@@ -134,12 +136,15 @@ const Modal = ({ subscriptions }: ModalProps) => {
               </p>
             </div>
 
-            <p className="text[15px] md:text-2xl font-pt-root-ui-reg ml-5 md:ml-10 mb-3 md:mb-5">
+            <p className="text-[15px] md:text-2xl font-pt-root-ui-reg text-center md:text-left mx-auto md:ml-10 mb-3 md:mb-5">
               Посмотри, что мы для тебя приготовили 🔥
             </p>
 
             {/* Cards */}
-            <div className="grid justify-items-center grid-cols-1 md:grid-cols-3 gap-2 md:gap-5 md:mx-10" role="radiogroup">
+            <div
+              className="grid justify-items-center grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-5 md:mx-10"
+              role="radiogroup"
+            >
               {discountPrices.map((discount, index) => (
                 <div
                   key={index}
@@ -219,16 +224,15 @@ const Modal = ({ subscriptions }: ModalProps) => {
                       </span>
                     </div>
                   </div>
-
                 </div>
               ))}
             </div>
 
             <button
-              className="bg-[#FD4D35] text-white 
+              className="bg-[#FD4D35] text-white
+              block mx-auto 
               py-[20px] px-[42px] 
               my-[20px] md:my-[40px] 
-              ml-[20px] md:ml-[220px] 
               rounded-[50px] font-rubik text-xl 
               hover:opacity-70"
             >
