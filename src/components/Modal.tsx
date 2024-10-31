@@ -36,7 +36,7 @@ const Modal = ({ subscriptions }: ModalProps) => {
     setMounted(true);
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 124000);
+    }, 12);
 
     return () => clearTimeout(timer);
   }, []);
@@ -98,7 +98,7 @@ const Modal = ({ subscriptions }: ModalProps) => {
 
       <div className="fixed inset-0 flex items-center justify-center p-4">
         <div
-          className="relative bg-[#F5F7F7] max-w-[750px] min-h-[658px] w-full"
+          className="relative bg-[#F5F7F7] md:max-w-[750px] md:min-h-[658px] w-full min-w-[335px] max-h-screen overflow-y-auto md:overflow-y-visible"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -112,39 +112,39 @@ const Modal = ({ subscriptions }: ModalProps) => {
           </button>
 
           <div>
-            <div className="inline-block bg-accent text-white px-2.5 py-1.5 ml-10 text-[16px]">
+            <div className="inline-block bg-accent text-white px-2.5 py-1 md:py-1.5 md:ml-10 text-sm md:text-[16px]">
               горячее предложение
             </div>
 
             <div className="text-center">
               <h2
                 id="modal-title"
-                className="text-3xl font-bold text-center font-rubik my-8"
+                className="text-2xl md:text-3xl font-bold text-center font-rubik my-5 md:my-8"
               >
                 НЕ УПУСТИ СВОЙ{" "}
                 <span className="text-accent">ПОСЛЕДНИЙ ШАНС</span>
               </h2>
-              <p className="text-2xl font-pt-root-ui-reg mb-2">
+              <p className="text[15px] md:text-2xl font-pt-root-ui-reg mb-2">
                 Мы знаем, как трудно начать..{" "}
                 <span className="font-bold">Поэтому!</span>
               </p>
-              <p className="inline-block border-[1.5px] border-[#00C2FF] rounded-full px-7 py-4 font-pt-root-ui text-2xl mb-10">
+              <p className="inline-block border-[1.5px] border-[#00C2FF] rounded-full px-7 py-4 font-pt-root-ui text-[15px] md:text-2xl mb-6 md:mb-10">
                 Дарим скидку для{" "}
                 <span className="text-accent">лёгкого старта</span> 🏃‍♂️
               </p>
             </div>
 
-            <p className="text-2xl font-pt-root-ui-reg ml-10 mb-5">
+            <p className="text[15px] md:text-2xl font-pt-root-ui-reg ml-5 md:ml-10 mb-3 md:mb-5">
               Посмотри, что мы для тебя приготовили 🔥
             </p>
 
             {/* Cards */}
-            <div className="grid grid-cols-3 gap-5 mx-10" role="radiogroup">
+            <div className="grid justify-items-center grid-cols-1 md:grid-cols-3 gap-2 md:gap-5 md:mx-10" role="radiogroup">
               {discountPrices.map((discount, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedPlan(discount.name)}
-                  className={`w-[210px] h-[197px] p-4 rounded-[20px] border-2 cursor-pointer transition-all ${
+                  className={`w-[295px] md:w-[210px] h-[133px] md:h-[197px] md:p-4 rounded-[20px] border-2 cursor-pointer transition-all ${
                     discount.name === selectedPlan
                       ? "bg-[#01B9C50D] border-accent"
                       : "border-[#E7EAF1] border-2 hover:border-accent bg-white"
@@ -152,7 +152,7 @@ const Modal = ({ subscriptions }: ModalProps) => {
                   role="radio"
                   aria-checked={discount.name === selectedPlan}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between pt-6 md:pt-0 px-5 md:px-0">
                     <h3 className="font-bebas-neue-cyr text-2xl">
                       {discount.name}
                     </h3>
@@ -169,16 +169,17 @@ const Modal = ({ subscriptions }: ModalProps) => {
                     </div>
                   </div>
 
-                  <div className="relative">
-                    <div className="text-[#2D3242] text-xl font-pt-root-ui opacity-70 relative">
-                      <span className="relative">
+                  {/* Desktop */}
+                  <div className="hidden md:block relative">
+                    <div className=" text-[#2D3242] text-xl font-pt-root-ui opacity-70 relative">
+                      <span className="absolute md:relative">
                         {regularPrices[index].price}₽
                         <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform -rotate-18" />
                         <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform rotate-18" />
                       </span>
                     </div>
                     <div className="w-[134px] h-1 border-t border-[#E7EAF1] mb-4 mt-4 mx-auto"></div>
-                    <div className="text-[46px] font-pt-root-ui">
+                    <div className=" text-[44px] md:text-[46px] font-pt-root-ui">
                       {discount.price}
                       <span className="relative">
                         ₽
@@ -186,20 +187,48 @@ const Modal = ({ subscriptions }: ModalProps) => {
                           <DiscountBadge
                             standardPrice={regularPrices[index].price}
                             discountPrice={discount.price}
-                            size="w-[50px] h-[50px]"
-                            fontSize="text-[13px]"
+                            size="w-[40px] h-[40px] md:w-[50px] md:h-[50px]"
+                            fontSize="text-[11px] md:text-[13px]"
                           />
                         </div>
                       </span>
                     </div>
                   </div>
+
+                  {/* Mobile */}
+                  <div className="flex justify-between items-center md:hidden px-5 md:px-0">
+                    <div className=" text-[44px] md:text-[46px] font-pt-root-ui">
+                      {discount.price}
+                      <span className="relative">
+                        ₽
+                        <div className="absolute -top-3 left-8">
+                          <DiscountBadge
+                            standardPrice={regularPrices[index].price}
+                            discountPrice={discount.price}
+                            size="w-[40px] h-[40px] md:w-[50px] md:h-[50px]"
+                            fontSize="text-[11px] md:text-[13px]"
+                          />
+                        </div>
+                      </span>
+                    </div>
+                    <div className=" text-[#2D3242] text-xl font-pt-root-ui opacity-70 relative">
+                      <span className="">
+                        {regularPrices[index].price}₽
+                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform -rotate-18" />
+                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform rotate-18" />
+                      </span>
+                    </div>
+                  </div>
+
                 </div>
               ))}
             </div>
 
             <button
               className="bg-[#FD4D35] text-white 
-              py-[20px] px-[42px] my-[40px] ml-[220px] 
+              py-[20px] px-[42px] 
+              my-[20px] md:my-[40px] 
+              ml-[20px] md:ml-[220px] 
               rounded-[50px] font-rubik text-xl 
               hover:opacity-70"
             >

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { SubscriptionData } from "@/types/subscription";
 import DiscountBadge from "./DiscountBadge";
@@ -11,10 +9,10 @@ interface PricingCardsProps {
 }
 
 const descriptions = {
-  "1 неделя": "Чтобы просто начать 👍🏻",
-  "1 месяц": "Привести тело впорядок 💪🏻",
-  "3 месяца": "Изменить образ жизни 🔥",
-  навсегда: "Всегда быть в форме и поддерживать своё здоровье ⭐️",
+  "1 неделя": "Чтобы просто начать\u00A0👍🏻",
+  "1 месяц": "Привести тело впорядок\u00A0💪🏻",
+  "3 месяца": "Изменить образ жизни\u00A0🔥",
+  навсегда: "Всегда быть в форме и поддерживать своё здоровье\u00A0⭐️",
 };
 
 export default function PricingCards({
@@ -25,8 +23,8 @@ export default function PricingCards({
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [showDiscount, setShowDiscount] = useState(initialShowDiscount);
   const [isDiscountVisible, setIsDiscountVisible] = useState(true);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     if (showDiscount) {
       const timer = setTimeout(() => {
         setIsDiscountVisible(false);
@@ -56,16 +54,16 @@ export default function PricingCards({
   const pricingData = getPricingData();
 
   return (
-    <div className="max-w-[1200px]">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-3 mb-10">
+    <div className="w-full max-w-[1200px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-3 gap-2.5 mb-2 md:mb-10">
         {pricingData.slice(0, 3).map((item) => (
-          <div key={item.id} className="relative pt-6">
+          <div key={item.id} className="relative md:pt-6">
             <button
               onClick={() => {
                 setSelectedCardId(item.id);
                 onSelectPlan(item);
               }}
-              className={`w-[187px] h-[261px] rounded-[20px] relative transition-all duration-300
+              className={`w-full md:w-[187px] h-[140px] md:h-[261px] rounded-[20px] relative transition-all duration-300
                 ${
                   selectedCardId === item.id
                     ? "bg-[#01B9C50D] border-2 border-accent"
@@ -73,27 +71,64 @@ export default function PricingCards({
                 }
               `}
             >
-              {/* Бейдж со скидкой */}
               {showDiscount && item.discountPrice && (
                 <div
-                  className={`absolute right-3 -top-6 transition-opacity duration-300 ${
+                  className={`absolute top-1 right-1 md:right-3 md:-top-6 transition-opacity duration-300 ${
                     isDiscountVisible ? "opacity-100" : "opacity-0"
-                  } `}
+                  }`}
                 >
                   <DiscountBadge
                     standardPrice={item.price}
                     discountPrice={item.discountPrice}
+                    size="w-12 h-12 md:w-16 md:h-16"
+                    fontSize="text-[13px] md:text-[17px]"
                   />
                 </div>
               )}
 
-              <div className="relative">
-                {/* Название */}
+              {/* Mobile */}
+              <div className="flex align-start md:hidden w-full h-full">
+                <div className="flex flex-col text-left pl-6 pt-9">
+                  <h3 className="font-bebas-neue-cyr text-2xl text-[#687078] uppercase leading-tight pb-4">
+                    {item.name}
+                  </h3>
+                  <p className="text-[#2F4353] text-sm font-pt-root-ui-reg leading-[18px] max-w-[150px]">
+                    {descriptions[item.name as keyof typeof descriptions]}
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-end pr-4">
+                  <div className="font-pt-root-ui text-right">
+                    {showDiscount && item.discountPrice ? (
+                      <div
+                        className={`transition-all duration-300 ${
+                          isDiscountVisible
+                            ? "opacity-100 transform-none"
+                            : "opacity-0 translate-y-4 pointer-events-none"
+                        }`}
+                      >
+                        <span className="text-[32px] text-[#2D3242] block leading-tight">
+                          {item.discountPrice}₽
+                        </span>
+                        <span className="text-[#95979F] text-lg line-through font-pt-root-ui-reg">
+                          {item.price}₽
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-[32px] text-[#2D3242] block">
+                        {item.price}₽
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop */}
+              <div className="hidden md:flex flex-col h-full">
                 <h3 className="font-bebas-neue-cyr text-3xl text-[#687078] uppercase leading-[30px] mt-[45px] mb-[21px]">
                   {item.name}
                 </h3>
 
-                {/* Цена */}
                 <div className="font-pt-root-ui h-[80px] text-right mx-[36px] relative">
                   {showDiscount && item.discountPrice ? (
                     <div
@@ -112,7 +147,7 @@ export default function PricingCards({
                       </span>
                     </div>
                   ) : (
-                    <div className="absolute top-0 right-0 w-full transition-all duration-300 opacity-100 transform-none">
+                    <div className="absolute top-0 right-0 w-full">
                       <span className="text-5xl text-[#2D3242]">
                         {item.price}₽
                       </span>
@@ -120,8 +155,7 @@ export default function PricingCards({
                   )}
                 </div>
 
-                {/* Описание */}
-                <p className="text-[#2F4353] text-center text-[16px] mx-4 mb-4 font-pt-root-ui-reg">
+                <p className="text-[#2F4353] text-center text-base mx-4 mb-4 font-pt-root-ui-reg mt-auto">
                   {descriptions[item.name as keyof typeof descriptions]}
                 </p>
               </div>
@@ -130,14 +164,14 @@ export default function PricingCards({
         ))}
       </div>
 
-      {/* Карточка "навсегда" */}
-      <div className="w-full min-h-[125px] relative">
+      {/* "Навсегда" */}
+      <div className="w-full md:min-h-[125px] relative">
         <button
           onClick={() => {
             setSelectedCardId(subscriptions[3].id);
             onSelectPlan(subscriptions[3]);
           }}
-          className={`w-full p-6 rounded-[20px] relative transition-all duration-300
+          className={`w-full md:p-6 rounded-[20px] relative transition-all duration-300
             ${
               selectedCardId === subscriptions[3].id
                 ? "bg-[#01B9C50D] border-2 border-accent"
@@ -145,22 +179,60 @@ export default function PricingCards({
             }
           `}
         >
-          {/* Бейдж со скидкой */}
           {subscriptions[3].isPopular && showDiscount && (
             <div
-              className={`absolute right-3 -top-6 transition-opacity duration-300 ${
+              className={`absolute top-1 right-1 md:right-3 md:-top-6 transition-opacity duration-300 ${
                 isDiscountVisible ? "opacity-100" : "opacity-0"
               }`}
             >
               <DiscountBadge
                 standardPrice={subscriptions[7].price}
                 discountPrice={subscriptions[3].price}
+                size="w-12 h-12 md:w-16 md:h-16"
+                fontSize="text-[13px] md:text-[17px]"
               />
             </div>
           )}
 
-          {/* Цена */}
-          <div className="relative flex items-center">
+          {/* Mobile "Навсегда" */}
+          <div className="flex align-start md:hidden w-full h-full">
+            <div className="flex flex-col text-left pl-6 pt-9">
+              <h3 className="font-bebas-neue-cyr text-2xl text-[#2D3242] uppercase leading-tight pb-4">
+                {subscriptions[3].name}
+              </h3>
+              <p className="text-[#2F4353] text-sm font-pt-root-ui-reg leading-[18px] max-w-[150px] pb-2">
+                Всегда быть<br/>в форме ⭐️
+              </p>
+            </div>
+
+            <div className="w-1/2 flex items-center justify-end">
+              <div className="font-pt-root-ui text-right">
+                {showDiscount ? (
+                  <div
+                    className={`transition-all duration-300 ${
+                      isDiscountVisible
+                        ? "opacity-100 transform-none"
+                        : "opacity-0 translate-y-4 pointer-events-none"
+                    }`}
+                  >
+                    <span className="text-[32px] text-[#2D3242] block leading-tight">
+                      {subscriptions[3].price}₽
+                    </span>
+                    <span className="text-[#95979F] text-lg line-through font-pt-root-ui-reg">
+                      {subscriptions[7].price}₽
+                    </span>
+                  </div>
+                ) : (
+                  <span className="text-[32px] text-[#2D3242] block">
+                    {subscriptions[7].price}₽
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop "Навсегда" */}
+          <div className="hidden md:flex items-center">
             <h3 className="font-bebas-neue-cyr text-3xl font-bold text-[#2D3242] uppercase leading-[30px] mr-5">
               {subscriptions[3].name}
             </h3>
@@ -183,7 +255,7 @@ export default function PricingCards({
                   </span>
                 </div>
               ) : (
-                <div className="absolute top-0 right-0 w-full transition-all duration-300 opacity-100 transform-none">
+                <div className="absolute top-0 right-0 w-full">
                   <span className="text-5xl text-[#2D3242]">
                     {subscriptions[7].price}₽
                   </span>
@@ -191,8 +263,7 @@ export default function PricingCards({
               )}
             </div>
 
-            {/* Описание */}
-            <p className="text-[#2F4353] text-[16px] w-[161px] text-left ml-10 font-pt-root-ui-reg">
+            <p className="text-[#2F4353] text-base w-[161px] text-left ml-10 font-pt-root-ui-reg">
               {descriptions[pricingData[3].name as keyof typeof descriptions]}
             </p>
           </div>

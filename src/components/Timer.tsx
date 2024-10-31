@@ -27,13 +27,13 @@ export default function Timer({ initialMinutes }: TimerProps) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
 
-  const timerClasses = `font-bebas-neue text-6xl font-normal leading-none ${
+  const timerClasses = `font-bebas-neue md:text-6xl text-[40px] font-normal leading-none ${
     isWarning ? "animate-pulse text-alert" : "text-accent"
   }`;
 
   return (
     <div className="flex items-center gap-4 font-pt-root-ui text-3xl font-bold text-[#2D3242]">
-      <span className="font-pt-root-ui text-3xl text-[#2D3242]">
+      <span className="font-pt-root-ui md:text-3xl text-[16px] text-[#2D3242]">
         Скидка действует:
       </span>
       <div className="flex">
@@ -41,7 +41,7 @@ export default function Timer({ initialMinutes }: TimerProps) {
           <span className={timerClasses}>
             {String(minutes).padStart(2, "0")}
           </span>
-          <span className="font-pt-root-ui text-lg text-[#6D7585] -mt-2">
+          <span className="font-pt-root-ui md:text-lg text-sm text-[#6D7585] -mt-2">
             минут
           </span>
         </div>
@@ -77,7 +77,7 @@ export default function Timer({ initialMinutes }: TimerProps) {
           <span className={timerClasses}>
             {String(remainingSeconds).padStart(2, "0")}
           </span>
-          <span className="font-pt-root-ui text-lg text-[#6D7585] -mt-2">
+          <span className="font-pt-root-ui md:text-lg text-sm text-[#6D7585] -mt-2">
             секунд
           </span>
         </div>
