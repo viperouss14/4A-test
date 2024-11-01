@@ -49,14 +49,26 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://4-a-test.vercel.app/meta.png',
-        width: 1400,
-        height: 880,
+        width: 1200,
+        height: 630,
         alt: 'FitnessClub',
         type: 'image/png',
       },
     ],
+    locale: 'ru_RU',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FitnessClub',
+    description: 'Страница выбора тарифов фитнес клуба с хорошими скидками',
+    images: ['https://4-a-test.vercel.app/meta.png'],
+  },
+  other: {
+    'og:image:secure_url': 'https://4-a-test.vercel.app/meta.png',
+    'og:image:width': '1200',
+    'og:image:height': '630',
+  }
 }
 
 export default function RootLayout({
