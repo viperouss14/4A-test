@@ -10,10 +10,10 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <HeaderWithTimer />
-      <h1 className="font-rubik md:text-4xl text-2xl font-bold leading-tight tracking-tight ml-5 md:text-center text-[#2D3242] md:mt-7 mt-5 uppercase">
+      <h1 className="font-rubik md:text-4xl text-2xl font-bold leading-tight tracking-tight ml-5 sm:text-center text-[#2D3242] md:mt-7 mt-5 uppercase">
         Выберите подходящий тарифный план
       </h1>
-      <section className="flex flex-col items-center gap-2.5 md:my-24 my-5 justify-center md:flex-row md:items-start md:gap-20">
+      <section className="flex flex-col items-center gap-2.5 lg:my-24 my-5 justify-center lg:flex-row lg:items-start lg:gap-20">
         <ImageWithGradient />
         <ClientWrapper subscriptions={subscriptions} />
       </section>

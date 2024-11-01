@@ -165,13 +165,13 @@ export default function PricingCards({
       </div>
 
       {/* "Навсегда" */}
-      <div className="w-full min-h-[140px] md:min-h-[125px] relative">
+      <div className="flex w-full min-h-[140px] md:min-h-[125px] relative">
         <button
           onClick={() => {
             setSelectedCardId(subscriptions[3].id);
             onSelectPlan(subscriptions[3]);
           }}
-          className={`w-full min-h-[140px] md:p-6 rounded-[20px] relative transition-all duration-300
+          className={`flex items-stretch w-full min-h-[140px] md:min-h-[125px] p-0 m-0 md:p-6 rounded-[20px] relative transition-all duration-300
             ${
               selectedCardId === subscriptions[3].id
                 ? "bg-[#01B9C50D] border-2 border-accent"
@@ -195,7 +195,7 @@ export default function PricingCards({
           )}
 
           {/* Mobile "Навсегда" */}
-          <div className="flex align-start md:hidden w-full h-full">
+          <div className="flex md:hidden w-full">
             <div className="flex flex-col text-left pl-6 pt-8">
               <h3 className="font-bebas-neue-cyr text-2xl text-[#2D3242] uppercase leading-tight pb-4">
                 {subscriptions[3].name}

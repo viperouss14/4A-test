@@ -57,7 +57,7 @@ export default function ClientWrapper({ subscriptions }: ClientWrapperProps) {
         </label>
       </form>
 
-      <div className="flex justify-center md:justify-start w-full mt-5 md:mt-12">
+      <div className="flex justify-center lg:justify-start w-full mt-5 md:mt-12">
         <button
           className="bg-[#FD4D35] text-white px-[100px] py-[28px] rounded-[50px] font-rubik text-xl animate-pulse"
           disabled={!isChecked}
