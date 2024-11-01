@@ -68,6 +68,11 @@ export const metadata: Metadata = {
     'og:image:secure_url': 'https://4-a-test.vercel.app/meta.png',
     'og:image:width': '1200',
     'og:image:height': '630',
+    'telegram:channel': '@victor_us',
+    'telegram:card': 'summary_large_image',
+    'telegram:image': 'https://4-a-test.vercel.app/meta.png',
+    'telegram:title': 'FitnessClub',
+    'telegram:description': 'Страница выбора тарифов фитнес клуба с хорошими скидками',
   }
 }
 
