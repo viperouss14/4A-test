@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { SubscriptionData } from "@/types/subscription";
-import DiscountBadge from "./DiscountBadge";
+import { useState, useEffect } from 'react';
+import { SubscriptionData } from '@/types/subscription';
+import DiscountBadge from './DiscountBadge';
 
 interface PricingCardsProps {
   subscriptions: SubscriptionData[];
@@ -9,10 +9,10 @@ interface PricingCardsProps {
 }
 
 const descriptions = {
-  "1 неделя": "Чтобы просто начать\u00A0👍🏻",
-  "1 месяц": "Привести тело впорядок\u00A0💪🏻",
-  "3 месяца": "Изменить образ жизни\u00A0🔥",
-  навсегда: "Всегда быть в форме и поддерживать своё здоровье\u00A0⭐️",
+  '1 неделя': 'Чтобы просто начать\u00A0👍🏻',
+  '1 месяц': 'Привести тело впорядок\u00A0💪🏻',
+  '3 месяца': 'Изменить образ жизни\u00A0🔥',
+  навсегда: 'Всегда быть в форме и поддерживать своё здоровье\u00A0⭐️',
 };
 
 export default function PricingCards({
@@ -39,14 +39,14 @@ export default function PricingCards({
 
   const getPricingData = () => {
     const standardPrices = subscriptions.filter(
-      (item) => !item.isDiscount && item.isPopular
+      (item) => !item.isDiscount && item.isPopular,
     );
     const discountPrices = subscriptions.filter((item) => item.isDiscount);
 
     return standardPrices.map((standard) => ({
       ...standard,
       discountPrice: discountPrices.find(
-        (discount) => discount.name === standard.name
+        (discount) => discount.name === standard.name,
       )?.price,
     }));
   };
@@ -55,7 +55,7 @@ export default function PricingCards({
 
   return (
     <div className="w-full max-w-[1200px]">
-      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-3 gap-2.5 mb-2 md:mb-10">
+      <div className="mb-2 grid grid-cols-1 gap-2.5 md:mb-10 md:grid-cols-3 md:gap-x-3">
         {pricingData.slice(0, 3).map((item) => (
           <div key={item.id} className="relative md:pt-6">
             <button
@@ -63,18 +63,16 @@ export default function PricingCards({
                 setSelectedCardId(item.id);
                 onSelectPlan(item);
               }}
-              className={`w-full md:w-[187px] h-[140px] md:h-[261px] rounded-[20px] relative transition-all duration-300
-                ${
-                  selectedCardId === item.id
-                    ? "bg-[#01B9C50D] border-2 border-accent"
-                    : "bg-white border-2 border-[#D3D6DD] hover:border-accent hover:bg-[#01B9C50D]"
-                }
-              `}
+              className={`relative h-[140px] w-full rounded-[20px] transition-all duration-300 md:h-[261px] md:w-[187px] ${
+                selectedCardId === item.id
+                  ? 'border-2 border-accent bg-[#01B9C50D]'
+                  : 'border-2 border-[#D3D6DD] bg-white hover:border-accent hover:bg-[#01B9C50D]'
+              } `}
             >
               {showDiscount && item.discountPrice && (
                 <div
-                  className={`absolute top-1 right-1 md:right-3 md:-top-6 transition-opacity duration-300 ${
-                    isDiscountVisible ? "opacity-100" : "opacity-0"
+                  className={`absolute right-1 top-1 transition-opacity duration-300 md:-top-6 md:right-3 ${
+                    isDiscountVisible ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
                   <DiscountBadge
@@ -87,35 +85,35 @@ export default function PricingCards({
               )}
 
               {/* Mobile */}
-              <div className="flex align-start md:hidden w-full h-full">
-                <div className="flex flex-col text-left pl-6 pt-9">
-                  <h3 className="font-bebas-neue-cyr text-2xl text-[#687078] uppercase leading-tight pb-4">
+              <div className="align-start flex h-full w-full md:hidden">
+                <div className="flex flex-col pl-6 pt-9 text-left">
+                  <h3 className="pb-4 font-bebas-neue-cyr text-2xl uppercase leading-tight text-[#687078]">
                     {item.name}
                   </h3>
-                  <p className="text-[#2F4353] text-sm font-pt-root-ui-reg leading-[18px] max-w-[150px]">
+                  <p className="max-w-[150px] font-pt-root-ui-reg text-sm leading-[18px] text-[#2F4353]">
                     {descriptions[item.name as keyof typeof descriptions]}
                   </p>
                 </div>
-                
+
                 <div className="flex items-center justify-end pr-4">
-                  <div className="font-pt-root-ui text-right">
+                  <div className="text-right font-pt-root-ui">
                     {showDiscount && item.discountPrice ? (
                       <div
                         className={`transition-all duration-300 ${
                           isDiscountVisible
-                            ? "opacity-100 transform-none"
-                            : "opacity-0 translate-y-4 pointer-events-none"
+                            ? 'transform-none opacity-100'
+                            : 'pointer-events-none translate-y-4 opacity-0'
                         }`}
                       >
-                        <span className="text-[32px] text-[#2D3242] block leading-tight">
+                        <span className="block text-[32px] leading-tight text-[#2D3242]">
                           {item.discountPrice}₽
                         </span>
-                        <span className="text-[#95979F] text-lg line-through font-pt-root-ui-reg">
+                        <span className="font-pt-root-ui-reg text-lg text-[#95979F] line-through">
                           {item.price}₽
                         </span>
                       </div>
                     ) : (
-                      <span className="text-[32px] text-[#2D3242] block">
+                      <span className="block text-[32px] text-[#2D3242]">
                         {item.price}₽
                       </span>
                     )}
@@ -124,30 +122,30 @@ export default function PricingCards({
               </div>
 
               {/* Desktop */}
-              <div className="hidden md:flex flex-col h-full">
-                <h3 className="font-bebas-neue-cyr text-3xl text-[#687078] uppercase leading-[30px] mt-[45px] mb-[21px]">
+              <div className="hidden h-full flex-col md:flex">
+                <h3 className="mb-[21px] mt-[45px] font-bebas-neue-cyr text-3xl uppercase leading-[30px] text-[#687078]">
                   {item.name}
                 </h3>
 
-                <div className="font-pt-root-ui h-[80px] text-right mx-[36px] relative">
+                <div className="relative mx-[36px] h-[80px] text-right font-pt-root-ui">
                   {showDiscount && item.discountPrice ? (
                     <div
-                      className={`absolute top-0 right-0 w-full transition-all duration-300 ${
+                      className={`absolute right-0 top-0 w-full transition-all duration-300 ${
                         isDiscountVisible
-                          ? "opacity-100 transform-none"
-                          : "opacity-0 translate-y-4 pointer-events-none"
+                          ? 'transform-none opacity-100'
+                          : 'pointer-events-none translate-y-4 opacity-0'
                       }`}
                     >
                       <span className="text-5xl text-[#2D3242]">
                         {item.discountPrice}₽
                       </span>
                       <br />
-                      <span className="text-[#95979F] text-2xl line-through font-pt-root-ui-reg">
+                      <span className="font-pt-root-ui-reg text-2xl text-[#95979F] line-through">
                         {item.price}₽
                       </span>
                     </div>
                   ) : (
-                    <div className="absolute top-0 right-0 w-full">
+                    <div className="absolute right-0 top-0 w-full">
                       <span className="text-5xl text-[#2D3242]">
                         {item.price}₽
                       </span>
@@ -155,7 +153,7 @@ export default function PricingCards({
                   )}
                 </div>
 
-                <p className="text-[#2F4353] text-center text-base mx-4 mb-4 font-pt-root-ui-reg mt-auto">
+                <p className="mx-4 mb-4 mt-auto text-center font-pt-root-ui-reg text-base text-[#2F4353]">
                   {descriptions[item.name as keyof typeof descriptions]}
                 </p>
               </div>
@@ -165,24 +163,22 @@ export default function PricingCards({
       </div>
 
       {/* "Навсегда" */}
-      <div className="flex w-full min-h-[140px] md:min-h-[125px] relative">
+      <div className="relative flex min-h-[140px] w-full md:min-h-[125px]">
         <button
           onClick={() => {
             setSelectedCardId(subscriptions[3].id);
             onSelectPlan(subscriptions[3]);
           }}
-          className={`flex items-stretch w-full min-h-[140px] md:min-h-[125px] p-0 m-0 md:p-6 rounded-[20px] relative transition-all duration-300
-            ${
-              selectedCardId === subscriptions[3].id
-                ? "bg-[#01B9C50D] border-2 border-accent"
-                : "bg-white border-2 border-[#D3D6DD] hover:border-accent hover:bg-[#01B9C50D]"
-            }
-          `}
+          className={`relative m-0 flex min-h-[140px] w-full items-stretch rounded-[20px] p-0 transition-all duration-300 md:min-h-[125px] md:p-6 ${
+            selectedCardId === subscriptions[3].id
+              ? 'border-2 border-accent bg-[#01B9C50D]'
+              : 'border-2 border-[#D3D6DD] bg-white hover:border-accent hover:bg-[#01B9C50D]'
+          } `}
         >
           {subscriptions[3].isPopular && showDiscount && (
             <div
-              className={`absolute top-1 right-1 md:right-3 md:-top-6 transition-opacity duration-300 ${
-                isDiscountVisible ? "opacity-100" : "opacity-0"
+              className={`absolute right-1 top-1 transition-opacity duration-300 md:-top-6 md:right-3 ${
+                isDiscountVisible ? 'opacity-100' : 'opacity-0'
               }`}
             >
               <DiscountBadge
@@ -195,35 +191,36 @@ export default function PricingCards({
           )}
 
           {/* Mobile "Навсегда" */}
-          <div className="flex md:hidden w-full">
-            <div className="flex flex-col text-left pl-6 pt-8">
-              <h3 className="font-bebas-neue-cyr text-2xl text-[#2D3242] uppercase leading-tight pb-4">
+          <div className="flex w-full md:hidden">
+            <div className="flex flex-col pl-6 pt-8 text-left">
+              <h3 className="pb-4 font-bebas-neue-cyr text-2xl uppercase leading-tight text-[#2D3242]">
                 {subscriptions[3].name}
               </h3>
-              <p className="text-[#2F4353] text-sm font-pt-root-ui-reg leading-[18px] max-w-[150px] pb-2">
-                Всегда быть<br/>в форме ⭐️
+              <p className="max-w-[150px] pb-2 font-pt-root-ui-reg text-sm leading-[18px] text-[#2F4353]">
+                Всегда быть
+                <br />в форме ⭐️
               </p>
             </div>
 
-            <div className="w-1/2 flex items-center justify-end">
-              <div className="font-pt-root-ui text-right">
+            <div className="flex w-1/2 items-center justify-end">
+              <div className="text-right font-pt-root-ui">
                 {showDiscount ? (
                   <div
                     className={`transition-all duration-300 ${
                       isDiscountVisible
-                        ? "opacity-100 transform-none"
-                        : "opacity-0 translate-y-4 pointer-events-none"
+                        ? 'transform-none opacity-100'
+                        : 'pointer-events-none translate-y-4 opacity-0'
                     }`}
                   >
-                    <span className="text-[32px] text-[#2D3242] block leading-tight">
+                    <span className="block text-[32px] leading-tight text-[#2D3242]">
                       {subscriptions[3].price}₽
                     </span>
-                    <span className="text-[#95979F] text-lg line-through font-pt-root-ui-reg">
+                    <span className="font-pt-root-ui-reg text-lg text-[#95979F] line-through">
                       {subscriptions[7].price}₽
                     </span>
                   </div>
                 ) : (
-                  <span className="text-[32px] text-[#2D3242] block">
+                  <span className="block text-[32px] text-[#2D3242]">
                     {subscriptions[7].price}₽
                   </span>
                 )}
@@ -232,30 +229,30 @@ export default function PricingCards({
           </div>
 
           {/* Desktop "Навсегда" */}
-          <div className="hidden md:flex items-center">
-            <h3 className="font-bebas-neue-cyr text-3xl font-bold text-[#2D3242] uppercase leading-[30px] mr-5">
+          <div className="hidden items-center md:flex">
+            <h3 className="mr-5 font-bebas-neue-cyr text-3xl font-bold uppercase leading-[30px] text-[#2D3242]">
               {subscriptions[3].name}
             </h3>
 
-            <div className="font-pt-root-ui text-right h-[55px] relative min-w-[142px]">
+            <div className="relative h-[55px] min-w-[142px] text-right font-pt-root-ui">
               {showDiscount ? (
                 <div
-                  className={`absolute top-0 right-0 w-full transition-all duration-300 ${
+                  className={`absolute right-0 top-0 w-full transition-all duration-300 ${
                     isDiscountVisible
-                      ? "opacity-100 transform-none"
-                      : "opacity-0 translate-y-4 pointer-events-none"
+                      ? 'transform-none opacity-100'
+                      : 'pointer-events-none translate-y-4 opacity-0'
                   }`}
                 >
                   <span className="text-5xl text-[#2D3242]">
                     {subscriptions[3].price}₽
                   </span>
                   <br />
-                  <span className="text-[#95979F] text-2xl line-through font-pt-root-ui-reg">
+                  <span className="font-pt-root-ui-reg text-2xl text-[#95979F] line-through">
                     {subscriptions[7].price}₽
                   </span>
                 </div>
               ) : (
-                <div className="absolute top-0 right-0 w-full">
+                <div className="absolute right-0 top-0 w-full">
                   <span className="text-5xl text-[#2D3242]">
                     {subscriptions[7].price}₽
                   </span>
@@ -263,7 +260,7 @@ export default function PricingCards({
               )}
             </div>
 
-            <p className="text-[#2F4353] text-base w-[161px] text-left ml-10 font-pt-root-ui-reg">
+            <p className="ml-10 w-[161px] text-left font-pt-root-ui-reg text-base text-[#2F4353]">
               {descriptions[pricingData[3].name as keyof typeof descriptions]}
             </p>
           </div>

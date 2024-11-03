@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --background: #f5f7f7;
   --alert-color: #fd4d35;
@@ -15,7 +14,7 @@ body {
   font-family: var(--font-pt-root-ui), Arial, Helvetica, sans-serif;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -28,13 +27,13 @@ input[type="checkbox"] {
   position: relative;
 }
 
-input[type="checkbox"]:checked {
+input[type='checkbox']:checked {
   background-color: var(--accent-color);
   border: none;
 }
 
-input[type="checkbox"]:checked::before {
-  content: "✓";
+input[type='checkbox']:checked::before {
+  content: '✓';
   display: block;
   text-align: center;
   background-color: var(--accent-color);

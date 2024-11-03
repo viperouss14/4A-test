@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 interface DiscountBadgeProps {
   standardPrice: number;
@@ -14,8 +14,8 @@ const getDiscount = (standard: number, discounted: number): number => {
 export default function DiscountBadge({
   standardPrice,
   discountPrice,
-  size = "w-16 h-16",
-  fontSize = "text-[17px]",
+  size = 'w-16 h-16',
+  fontSize = 'text-[17px]',
 }: DiscountBadgeProps) {
   const discount = getDiscount(standardPrice, discountPrice);
 
@@ -26,7 +26,7 @@ export default function DiscountBadge({
         alt=""
         fill
         style={{ objectFit: 'cover' }}
-        className="w-full h-full"
+        className="h-full w-full"
       />
       <div
         className={`absolute inset-0 flex items-center justify-center text-white ${fontSize} font-pt-root-ui-reg`}

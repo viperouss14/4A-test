@@ -1,8 +1,8 @@
-import ClientWrapper from "@/components/ClientWrapper";
-import HeaderWithTimer from "@/components/HeaderWithTimer";
-import ImageWithGradient from "@/components/ImageWithGradient";
-import Modal from "@/components/Modal";
-import { getSubscriptions } from "@/services/api";
+import ClientWrapper from '@/components/ClientWrapper';
+import HeaderWithTimer from '@/components/HeaderWithTimer';
+import ImageWithGradient from '@/components/ImageWithGradient';
+import Modal from '@/components/Modal';
+import { getSubscriptions } from '@/services/api';
 
 export default async function Home() {
   const subscriptions = await getSubscriptions();
@@ -10,10 +10,10 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <HeaderWithTimer />
-      <h1 className="font-rubik md:text-4xl text-2xl font-bold leading-tight tracking-tight ml-5 sm:text-center text-[#2D3242] md:mt-7 mt-5 uppercase">
+      <h1 className="ml-5 mt-5 font-rubik text-2xl font-bold uppercase leading-tight tracking-tight text-[#2D3242] sm:text-center md:mt-7 md:text-4xl">
         Выберите подходящий тарифный план
       </h1>
-      <section className="flex flex-col items-center gap-2.5 lg:my-24 my-5 justify-center lg:flex-row lg:items-start lg:gap-20">
+      <section className="my-5 flex flex-col items-center justify-center gap-2.5 lg:my-24 lg:flex-row lg:items-start lg:gap-20">
         <ImageWithGradient />
         <ClientWrapper subscriptions={subscriptions} />
       </section>

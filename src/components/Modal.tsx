@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, useRef } from "react";
-import { createPortal } from "react-dom";
-import { SubscriptionData } from "@/types/subscription";
-import DiscountBadge from "./DiscountBadge";
-import { X } from "lucide-react";
+import React, { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { SubscriptionData } from '@/types/subscription';
+import DiscountBadge from './DiscountBadge';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   subscriptions: SubscriptionData[];
@@ -12,7 +12,7 @@ interface ModalProps {
 
 const Modal = ({ subscriptions }: ModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState("1 месяц");
+  const [selectedPlan, setSelectedPlan] = useState('1 месяц');
   const [mounted, setMounted] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -47,22 +47,22 @@ const Modal = ({ subscriptions }: ModalProps) => {
 
     if (isOpen) {
       dialog.showModal();
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
       dialog.close();
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    document.addEventListener('keydown', handleEscape);
     return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "unset";
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
@@ -88,103 +88,103 @@ const Modal = ({ subscriptions }: ModalProps) => {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="fixed inset-0 p-0 m-0 max-w-none w-screen h-screen bg-transparent outline-none"
+      className="fixed inset-0 m-0 h-screen w-screen max-w-none bg-transparent p-0 outline-none"
       onClick={handleBackdropClick}
     >
       <div
-        className="fixed inset-0 bg-[#00000066] w-screen h-screen"
+        className="fixed inset-0 h-screen w-screen bg-[#00000066]"
         aria-hidden="true"
       />
 
-      <div className="fixed inset-x-0 top-[60px] bottom-[60px] md:inset-0 flex items-center justify-center p-4">
+      <div className="fixed inset-x-0 bottom-[60px] top-[60px] flex items-center justify-center p-4 md:inset-0">
         <div
-          className="relative bg-[#F5F7F7] mx-5 md:mx-0 md:max-w-[750px] md:min-h-[658px] w-[calc(100%-40px)] min-w-[335px] max-h-screen overflow-y-auto md:overflow-y-visible"
+          className="relative mx-5 max-h-screen w-[calc(100%-40px)] min-w-[335px] overflow-y-auto bg-[#F5F7F7] md:mx-0 md:min-h-[658px] md:max-w-[750px] md:overflow-y-visible"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
         >
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute right-5 top-5 text-gray-400 hover:text-gray-600 border-none outline-none"
+            className="absolute right-5 top-5 border-none text-gray-400 outline-none hover:text-gray-600"
             aria-label="Закрыть"
           >
             <X size={24} />
           </button>
 
           <div>
-            <div className="inline-block bg-accent text-white px-2.5 py-1 md:py-1.5 md:ml-10 text-sm md:text-[16px]">
+            <div className="inline-block bg-accent px-2.5 py-1 text-sm text-white md:ml-10 md:py-1.5 md:text-[16px]">
               горячее предложение
             </div>
 
             <div className="text-center">
               <h2
                 id="modal-title"
-                className="text-2xl md:text-3xl font-bold text-center font-rubik my-5 md:my-8"
+                className="my-5 text-center font-rubik text-2xl font-bold md:my-8 md:text-3xl"
               >
-                НЕ УПУСТИ СВОЙ{" "}
-                <span className="block md:inline text-accent">
+                НЕ УПУСТИ СВОЙ{' '}
+                <span className="block text-accent md:inline">
                   ПОСЛЕДНИЙ ШАНС
                 </span>
               </h2>
-              <p className="text[15px] md:text-2xl font-pt-root-ui-reg mb-2">
-                Мы знаем, как трудно начать..{" "}
+              <p className="text[15px] mb-2 font-pt-root-ui-reg md:text-2xl">
+                Мы знаем, как трудно начать..{' '}
                 <span className="font-bold">Поэтому!</span>
               </p>
-              <p className="inline-block border-[1.5px] border-[#00C2FF] rounded-full px-7 py-4 font-pt-root-ui text-[15px] md:text-2xl mb-6 md:mb-10">
-                Дарим скидку для{" "}
+              <p className="mb-6 inline-block rounded-full border-[1.5px] border-[#00C2FF] px-7 py-4 font-pt-root-ui text-[15px] md:mb-10 md:text-2xl">
+                Дарим скидку для{' '}
                 <span className="text-accent">лёгкого старта</span> 🏃‍♂️
               </p>
             </div>
 
-            <p className="text-[15px] md:text-2xl font-pt-root-ui-reg text-center md:text-left mx-auto md:ml-10 mb-3 md:mb-5">
+            <p className="mx-auto mb-3 text-center font-pt-root-ui-reg text-[15px] md:mb-5 md:ml-10 md:text-left md:text-2xl">
               Посмотри, что мы для тебя приготовили 🔥
             </p>
 
             {/* Cards */}
             <div
-              className="grid justify-items-center grid-cols-1 md:grid-cols-3 gap-1.5 md:gap-5 md:mx-10"
+              className="grid grid-cols-1 justify-items-center gap-1.5 md:mx-10 md:grid-cols-3 md:gap-5"
               role="radiogroup"
             >
               {discountPrices.map((discount, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedPlan(discount.name)}
-                  className={`w-[295px] md:w-[210px] h-[133px] md:h-[197px] md:p-4 rounded-[20px] border-2 cursor-pointer transition-all ${
+                  className={`h-[133px] w-[295px] cursor-pointer rounded-[20px] border-2 transition-all md:h-[197px] md:w-[210px] md:p-4 ${
                     discount.name === selectedPlan
-                      ? "bg-[#01B9C50D] border-accent"
-                      : "border-[#E7EAF1] border-2 hover:border-accent bg-white"
+                      ? 'border-accent bg-[#01B9C50D]'
+                      : 'border-2 border-[#E7EAF1] bg-white hover:border-accent'
                   }`}
                   role="radio"
                   aria-checked={discount.name === selectedPlan}
                 >
-                  <div className="flex items-center justify-between pt-6 md:pt-0 px-5 md:px-0">
+                  <div className="flex items-center justify-between px-5 pt-6 md:px-0 md:pt-0">
                     <h3 className="font-bebas-neue-cyr text-2xl">
                       {discount.name}
                     </h3>
                     <div
-                      className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                      className={`flex h-6 w-6 items-center justify-center rounded-full border-2 ${
                         discount.name === selectedPlan
-                          ? "border-accent"
-                          : "border-[#555965]"
+                          ? 'border-accent'
+                          : 'border-[#555965]'
                       }`}
                     >
                       {discount.name === selectedPlan && (
-                        <div className="bg-accent w-3 h-3 rounded-full" />
+                        <div className="h-3 w-3 rounded-full bg-accent" />
                       )}
                     </div>
                   </div>
 
                   {/* Desktop */}
-                  <div className="hidden md:block relative">
-                    <div className=" text-[#2D3242] text-xl font-pt-root-ui opacity-70 relative">
+                  <div className="relative hidden md:block">
+                    <div className="relative font-pt-root-ui text-xl text-[#2D3242] opacity-70">
                       <span className="absolute md:relative">
                         {regularPrices[index].price}₽
-                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform -rotate-18" />
-                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform rotate-18" />
+                        <div className="absolute left-0 right-0 top-1/2 h-[2px] -rotate-18 transform bg-[#FD4D35]" />
+                        <div className="absolute left-0 right-0 top-1/2 h-[2px] rotate-18 transform bg-[#FD4D35]" />
                       </span>
                     </div>
-                    <div className="w-[134px] h-1 border-t border-[#E7EAF1] mb-4 mt-4 mx-auto"></div>
-                    <div className=" text-[44px] md:text-[46px] font-pt-root-ui">
+                    <div className="mx-auto mb-4 mt-4 h-1 w-[134px] border-t border-[#E7EAF1]"></div>
+                    <div className="font-pt-root-ui text-[44px] md:text-[46px]">
                       {discount.price}
                       <span className="relative">
                         ₽
@@ -201,8 +201,8 @@ const Modal = ({ subscriptions }: ModalProps) => {
                   </div>
 
                   {/* Mobile */}
-                  <div className="flex justify-between items-center md:hidden px-5 md:px-0">
-                    <div className=" text-[44px] md:text-[46px] font-pt-root-ui">
+                  <div className="flex items-center justify-between px-5 md:hidden md:px-0">
+                    <div className="font-pt-root-ui text-[44px] md:text-[46px]">
                       {discount.price}
                       <span className="relative">
                         ₽
@@ -216,11 +216,11 @@ const Modal = ({ subscriptions }: ModalProps) => {
                         </div>
                       </span>
                     </div>
-                    <div className=" text-[#2D3242] text-xl font-pt-root-ui opacity-70 relative">
+                    <div className="relative font-pt-root-ui text-xl text-[#2D3242] opacity-70">
                       <span className="">
                         {regularPrices[index].price}₽
-                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform -rotate-18" />
-                        <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-[#FD4D35] transform rotate-18" />
+                        <div className="absolute left-0 right-0 top-1/2 h-[2px] -rotate-18 transform bg-[#FD4D35]" />
+                        <div className="absolute left-0 right-0 top-1/2 h-[2px] rotate-18 transform bg-[#FD4D35]" />
                       </span>
                     </div>
                   </div>
@@ -228,21 +228,14 @@ const Modal = ({ subscriptions }: ModalProps) => {
               ))}
             </div>
 
-            <button
-              className="bg-[#FD4D35] text-white
-              block mx-auto 
-              py-[20px] px-[42px] 
-              my-[20px] md:my-[40px] 
-              rounded-[50px] font-rubik text-xl 
-              hover:opacity-70"
-            >
+            <button className="mx-auto my-[20px] block rounded-[50px] bg-[#FD4D35] px-[42px] py-[20px] font-rubik text-xl text-white hover:opacity-70 md:my-[40px]">
               Начать тренироваться
             </button>
           </div>
         </div>
       </div>
     </dialog>,
-    document.body
+    document.body,
   );
 };
 
